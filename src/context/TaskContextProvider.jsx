@@ -7,7 +7,7 @@ const TaskContextProvider = ({ children }) => {
   console.log("AllTasks:", allTasks);
   console.log("Edit Id:", editId);
 
-  //Load tasks
+  //Load saved tasks
   useEffect(() => {
     const saved = localStorage.getItem("tasks");
     if (saved) {
@@ -15,7 +15,7 @@ const TaskContextProvider = ({ children }) => {
     }
   }, []);
 
-  //Save tasks when change
+  //Save tasks whenever alltasks[] changes
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(allTasks));
   }, [allTasks]);
