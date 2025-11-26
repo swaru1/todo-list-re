@@ -1,20 +1,30 @@
-import React, { useState } from 'react'
-import { TaskContext } from './TaskContext'
+import React, { useEffect, useState } from "react";
+import { TaskContext } from "./TaskContext";
 
-const TaskContextProvider = ({children}) => {
+const TaskContextProvider = ({ children }) => {
+  const [allTasks, setAllTasks] = useState([]);
+  const [editId, setEditId] = useState(null);
+  console.log("AllTasks:", allTasks);
+  console.log("Edit Id:", editId);
 
-    const [allTasks, setAllTasks] = useState([])
-    console.log("AllTasks:", allTasks);
+  //Load tasks
+  useEffect(() => {
+    const saved = localStorage.getItem("tasks");
+    if (saved) {
+      setAllTasks(JSON.parse(saved));
+    }
+  }, []);
 
-    const [editId, setEditId] = useState(null)
-    console.log("Edit Id:", editId);
-    
+  //Save tasks when change
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(allTasks));
+  }, [allTasks]);
 
   return (
-    <TaskContext.Provider value={{allTasks, setAllTasks, editId, setEditId}}>
-        {children}
+    <TaskContext.Provider value={{ allTasks, setAllTasks, editId, setEditId }}>
+      {children}
     </TaskContext.Provider>
-  )
-}
+  );
+};
 
-export default TaskContextProvider
+export default TaskContextProvider;

@@ -20,8 +20,8 @@ const Task = ({val}) => {
     <div className="flex p-2 bg-lime-300 w-[800px] justify-between border items-center">
       <h1>{val.task}</h1>
       <div className="flex gap-4">
-        <button onClick={handleDelete} className="p-1 px-3 bg-red-300 active:scale-95 rounded-md">delete</button>
-        <button onClick={handleUpdate} className="p-1 px-3 bg-green-300 active:scale-95 rounded-md">update</button>
+        <button onClick={handleDelete} className="p-1 px-3 bg-red-300 active:scale-95  cursor-pointer rounded-md">delete</button>
+        <button onClick={handleUpdate} className="p-1 px-3 bg-green-300 active:scale-95 cursor-pointer rounded-md">update</button>
       </div>
     </div>
   );
