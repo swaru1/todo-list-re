@@ -4,8 +4,8 @@ import { TaskContext } from "./TaskContext";
 const TaskContextProvider = ({ children }) => {
   const [allTasks, setAllTasks] = useState([]);
   const [editId, setEditId] = useState(null);
-  console.log("AllTasks:", allTasks);
-  console.log("Edit Id:", editId);
+  //console.log("AllTasks:", allTasks);
+  //console.log("Edit Id:", editId);
 
   //Load saved tasks
   useEffect(() => {

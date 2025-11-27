@@ -9,7 +9,7 @@ const Task = ({val}) => {
     const handleDelete = ()=> {
         const filterArr = allTasks.filter((elem)=> elem.id != val.id )
         setAllTasks(filterArr);
-        console.log("delete called", "value:", val.task, "id:", val.id);
+        //console.log("delete called", "value:", val.task, "id:", val.id);
     }
 
     const handleUpdate = ()=> {

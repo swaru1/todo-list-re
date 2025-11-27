@@ -37,7 +37,7 @@ const Input = () => {
     };
 
     setAllTasks((prev) => [...prev, taskObj]);
-    console.log("submitted");
+    //console.log("submitted");
     setInptxt("");
   };
 
