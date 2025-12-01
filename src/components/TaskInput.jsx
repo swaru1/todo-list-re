@@ -3,29 +3,44 @@ import { TaskContext } from "../context/TaskContextProvider";
 import { nanoid } from "nanoid";
 
 const TaskInput = () => {
+  const [inputTxt, setInputTxt] = useState("");
+  const { allTasks, setAlltasks, editId, setEditId } = useContext(TaskContext);
 
-    const [inputTxt, setInputTxt] = useState('')
-    const {allTasks, setAlltasks} = useContext(TaskContext)
+  useEffect(() => {
+    if (editId) {
+      const found = allTasks.find((elem) => elem.id === editId);
+      if (found) setInputTxt(found.task);
+    }
+  }, [editId, allTasks]);
 
-    const handleChange = (e)=> {
-        setInputTxt(e.target.value)
+  const handleChange = (e) => {
+    setInputTxt(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputTxt == "") return;
+
+    if (editId) {
+      let updated = allTasks.map((elem) =>
+        elem.id === editId ? { ...elem, task: inputTxt } : elem
+      );
+      updated.task = inputTxt;
+
+      setAlltasks(updated);
+      setInputTxt("");
+      setEditId(null);
+      return;
     }
 
-    const handleSubmit = (e)=> {
+    let taskObj = {
+      id: nanoid(),
+      task: inputTxt,
+    };
 
-        e.preventDefault();
-        if(inputTxt == "") return;
-
-        let taskObj = {
-            id: nanoid(),
-            task: inputTxt,
-        }
-
-        setAlltasks((prev)=> [...prev, taskObj])
-        setInputTxt("")
-    }
-    
-    
+    setAlltasks((prev) => [...prev, taskObj]);
+    setInputTxt("");
+  };
 
   return (
     <div className="flex justify-center">
