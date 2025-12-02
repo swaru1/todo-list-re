@@ -25,7 +25,6 @@ const TaskInput = () => {
       let updated = allTasks.map((elem) =>
         elem.id === editId ? { ...elem, task: inputTxt } : elem
       );
-      updated.task = inputTxt;
 
       setAlltasks(updated);
       setInputTxt("");
